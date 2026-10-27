@@ -31,3 +31,10 @@ Thumbs.db
 
 # Local competition materials
 /项目文档/
+
+# Local development notes and superseded showcase assets
+/AGENT_COMPETITION_NARRATIVE.md
+/MULING_3D_PET.md
+/MULING_WORKFLOW.md
+/docs/UPDATE_SHOWCASE.md
+/docs/assets/printing.png
