@@ -694,7 +694,7 @@ export default function AnnualPaintingPage() {
                 const res = await fetch('/api/config', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ token: apiToken }),
+                  body: JSON.stringify({ apiToken }),
                 });
                 const data = await res.json();
                 if (data.success) {
@@ -706,7 +706,7 @@ export default function AnnualPaintingPage() {
               保存 Token
             </button>
           </div>
-          <p style={styles.tokenHint}>Token 将保存在服务器配置文件中</p>
+          <p style={styles.tokenHint}>请填写您自己的密钥，仅用于当前浏览器会话，不写入项目文件</p>
         </div>
 
         {/* ========== 纹样库同步提示 ========== */}

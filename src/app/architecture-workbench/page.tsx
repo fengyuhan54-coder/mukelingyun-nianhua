@@ -447,7 +447,7 @@ export default function HomePage() {
             </button>
           </div>
           <p style={{ color: '#999', fontSize: '12px', marginTop: '12px' }}>
-            💡 Token 将保存在服务器配置文件中，下次访问自动加载
+            💡 请填写您自己的密钥，仅用于当前浏览器会话，不写入项目文件
           </p>
         </div>
       </div>
