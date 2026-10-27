@@ -1,0 +1,24 @@
+[project]
+sub_id = "e3a81f12"
+name = "ancient-architecture-agent"
+entrypoint = "server.js"
+requires = ["nodejs-24"]
+project_type = "web"
+
+[preview]
+preview_enable = "enabled"
+
+[dev]
+build = ["pnpm", "run", "build"]
+run = ["pnpm", "run", "start"]
+
+[deploy]
+build = ["bash", ".cozeproj/scripts/deploy_build.sh"]
+run = ["bash", ".cozeproj/scripts/deploy_run.sh"]
+
+[deploy.profile]
+kind = "service"
+flavor = "web"
+
+[deploy.backend]
+enabled = true

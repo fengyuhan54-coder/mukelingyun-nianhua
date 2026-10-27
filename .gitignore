@@ -1,0 +1,30 @@
+# Dependencies and build output
+node_modules/
+node_modules_moved_backup/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local credentials and environment
+.api-config.json
+.api-config.*.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime data and user uploads
+/public/uploads/
+.logs/
+.tmp/
+.muling-check/
+*.log
+
+# Local editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

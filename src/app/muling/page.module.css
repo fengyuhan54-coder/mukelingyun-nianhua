@@ -1,0 +1,108 @@
+.page { min-height: 100vh; background: linear-gradient(135deg, #fdf6e3 0%, #fef9f3 100%); color: var(--text); }
+.shell { max-width: 1200px; margin: auto; padding: 24px 20px 100px; }
+.hero { background: linear-gradient(135deg, #8b0000 0%, #c0392b 100%); color: white; padding: 24px 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.hero h1 { font-size: 24px; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,.2); }
+.hero p { max-width: 800px; margin: auto; font-size: 14px; opacity: .9; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.card { padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,.08); min-width: 0; }
+.card h2 { font-size: 20px; color: #8b0000; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px dashed var(--border); }
+.card h3 { font-size: 16px; margin: 12px 0 6px; }
+.card p { overflow-wrap: anywhere; }
+.card button, .card a { border: 1px solid #e8d5c4; background: #fff5f5; color: #c0392b; border-radius: 8px; padding: 10px 14px; font: inherit; font-size: 14px; cursor: pointer; text-decoration: none; transition: background .2s, box-shadow .2s; }
+.card button:hover:not(:disabled), .card a:hover { background: #ffe9e6; box-shadow: 0 2px 8px rgba(192,57,43,.12); }
+.card button:disabled { opacity: .5; cursor: not-allowed; }
+.card button:focus-visible, .card a:focus-visible, .card textarea:focus-visible, .card input:focus-visible, .card summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.card .primary { background: linear-gradient(135deg, #c0392b 0%, #8b0000 100%); color: white; border: none; padding: 14px 20px; font-weight: 600; flex: 1; }
+.card .primary:hover:not(:disabled) { background: linear-gradient(135deg, #a93226 0%, #730000 100%); box-shadow: 0 4px 12px rgba(192,57,43,.25); }
+.examples { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.examples button { text-align: left; font-size: 12px; }
+.scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+.scenarios button { display: flex; flex-direction: column; gap: 4px; text-align: left; min-height: 126px; }
+.scenarios button > span { font-size: 24px; }
+.scenarios button strong { color: #8b0000; }
+.scenarios button small { color: #666; line-height: 1.5; }
+.scenarios .scenarioActive { border: 2px solid #c0392b; background: #fff0ed; box-shadow: 0 3px 10px rgba(192,57,43,.16); }
+.card label { display: block; font-size: 14px; margin: 12px 0; }
+.card textarea { width: 100%; min-height: 150px; padding: 12px 16px; font: inherit; font-size: 14px; resize: vertical; border: 1px solid #ddd; border-radius: 8px; background: white; }
+.inputActions { display: flex; gap: 10px; align-items: center; margin: 8px 0 14px; }
+.inputActions span { color: #888; font-size: 12px; }
+.file { display: block; max-width: 100%; margin-top: 10px; font-size: 13px; }
+.file::file-selector-button { background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%); color: #c0392b; border: 1px solid #c0392b; border-radius: 8px; padding: 10px 14px; margin-right: 10px; cursor: pointer; }
+.reference { display: flex; gap: 14px; align-items: center; padding: 16px; background: #faf8f5; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
+.reference img { width: 90px; height: 90px; object-fit: contain; }
+.reference button { margin-top: 8px; font-size: 12px; }
+.card .option { display: flex; gap: 8px; align-items: center; }
+.option input { accent-color: #c0392b; }
+.hint { font-size: 12px; color: var(--text-secondary); margin: 10px 0; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+.error { color: #b42318; font-size: 13px; margin-top: 8px; }
+.settings { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; }
+.card summary { cursor: pointer; color: #a34545; margin: 8px 0; }
+.badge { display: inline-block; border-radius: 20px; background: #fff5f5; color: #a34545; border: 1px solid #f0d5d5; padding: 6px 12px; font-size: 13px; }
+.empty { padding: 28px 0; color: #888; line-height: 2; font-size: 14px; }
+.timeline { list-style: none; margin-top: 22px; max-height: 620px; overflow: auto; padding-right: 6px; }
+.timeline > li { padding: 0 0 20px 16px; border-left: 2px solid #ecd1cb; font-size: 14px; }
+.timeline strong { color: #a34545; }
+.timeline ul { padding-left: 18px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
+.artwork { border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; background: white; }
+.artwork > img { width: 100%; max-height: 380px; object-fit: contain; background: #faf8f5; border-radius: 8px; }
+.artwork p { font-size: 13px; }
+.agentFlow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr; gap: 10px; align-items: stretch; }
+.agentFlow > div { border: 1px solid #ecd1cb; border-radius: 10px; padding: 14px; background: #fff9f5; }
+.agentFlow b, .agentFlow span { display: block; }
+.agentFlow b { color: #8b0000; margin-bottom: 7px; font-size: 14px; }
+.agentFlow span { color: #666; font-size: 12px; line-height: 1.6; }
+.agentFlow i { align-self: center; color: #c0392b; font-style: normal; font-size: 20px; }
+@media (max-width: 900px) { .columns { grid-template-columns: 1fr; gap: 0; } .shell { padding: 24px 16px 100px; } .card { padding: 20px; } .hero h1 { font-size: 22px; } }
+@media (max-width: 900px) { .agentFlow { grid-template-columns: 1fr; } .agentFlow i { transform: rotate(90deg); justify-self: center; } }
+@media (max-width: 700px) { .scenarios { grid-template-columns: 1fr; } .scenarios button { min-height: auto; } }
+@media (max-width: 480px) { .gallery { grid-template-columns: 1fr; } .reference { align-items: flex-start; } .reference img { width: 64px; height: 64px; } }
+.sectionIntro { margin: -6px 0 16px; color: #66534c; line-height: 1.7; }
+.lifeScenes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.lifeScenes button { min-height: 76px; display: flex; align-items: center; gap: 9px; text-align: left; background: #fffaf4; }
+.lifeScenes button span { font-size: 22px; }
+.lifeScenes button strong { color: #71362e; }
+.proEntrances { margin: 4px 0 18px; border: 1px solid #ead9cc; border-radius: 9px; padding: 10px 12px 0; background: #fbf7f2; }
+.proEntrances > summary { margin: 0 0 10px; color: #7f574d; }
+.clarification { margin: 14px 0; padding: 14px; border: 1px solid #e5c993; border-radius: 10px; background: #fff9e9; }
+.clarification strong { color: #7d4b21; }
+.clarification p { margin: 7px 0 0; color: #624d3d; line-height: 1.65; font-size: 13px; }
+.clarificationActions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.planContext { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+.planContext > div { padding: 10px; border-radius: 8px; background: #fff8f4; border: 1px solid #ecd8ce; }
+.planContext small, .planContext strong { display: block; }
+.planContext small { margin-bottom: 4px; color: #8d746c; }
+.planContext strong { color: #633b34; line-height: 1.5; }
+.planContext .planWide { grid-column: 1 / -1; }
+.planContext ol { margin: 6px 0 0; padding-left: 20px; color: #633b34; line-height: 1.7; }
+.timeline h4 { margin: 12px 0 6px; color: #71433b; }
+@media (max-width: 700px) { .lifeScenes { grid-template-columns: repeat(2, 1fr); } .planContext { grid-template-columns: 1fr; } .planContext .planWide { grid-column: auto; } }
+@media (max-width: 420px) { .lifeScenes { grid-template-columns: 1fr; } }
+.memoryActions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.memoryArtwork { position: relative; padding-top: 38px; }
+.card .memoryDelete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #9b7168;
+  background: rgba(255, 250, 247, 0.94);
+  border: 1px solid #e5d2ca;
+  border-radius: 50%;
+  font-size: 19px;
+  line-height: 1;
+  box-shadow: 0 2px 7px rgba(89, 45, 36, 0.08);
+}
+.card .memoryDelete:hover:not(:disabled) {
+  color: #fff;
+  background: #9f2d25;
+  border-color: #9f2d25;
+  box-shadow: 0 3px 9px rgba(159, 45, 37, 0.22);
+}

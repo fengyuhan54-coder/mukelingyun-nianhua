@@ -1,0 +1,77 @@
+.backButton {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9990;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 16px 0 9px;
+  color: #7b2822;
+  text-decoration: none;
+  background: rgba(255, 250, 240, 0.96);
+  border: 1px solid rgba(190, 139, 72, 0.78);
+  border-radius: 999px;
+  box-shadow: 0 7px 22px rgba(75, 32, 20, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  transition: transform 0.18s ease, color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.backButton:hover {
+  color: #fffaf2;
+  background: #8b2e27;
+  box-shadow: 0 9px 26px rgba(75, 32, 20, 0.28);
+  transform: translateY(-1px);
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
+
+.backButton:focus-visible {
+  outline: 3px solid rgba(196, 86, 86, 0.34);
+  outline-offset: 3px;
+}
+
+.backButton > span:first-child {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fffaf2;
+  background: #8b2e27;
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.backButton:hover > span:first-child {
+  color: #8b2e27;
+  background: #f4d995;
+}
+
+@media (max-width: 720px) {
+  .backButton {
+    top: max(9px, env(safe-area-inset-top));
+    left: max(9px, env(safe-area-inset-left));
+    min-height: 38px;
+    padding: 0 13px 0 7px;
+    font-size: 12px;
+  }
+
+  .backButton > span:first-child {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+}
