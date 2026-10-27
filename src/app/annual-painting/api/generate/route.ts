@@ -1,3 +1,4 @@
+import { getApiToken } from '@/lib/api-config';
 import { NextRequest, NextResponse } from 'next/server';
 import { 
   generateEnhancedPrompt, 
@@ -6,15 +7,11 @@ import {
   generateValidationPrompts,
   getStyleThemeMaterial 
 } from '@/lib/annual-painting-prompts';
-import path from 'path';
-import fs from 'fs';
 import { saveArtworkRecord } from '@/lib/artwork-storage';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// 获取项目根目录下的配置文件
-const CONFIG_FILE = path.join(process.cwd(), '.api-config.json');
 
 // 最大重生成次数
 const MAX_REGENERATION_ATTEMPTS = 3;
@@ -66,15 +63,7 @@ function isAllowedArtworkText(value: string) {
   return /^[\u3400-\u9fff]{1,8}$/.test(normalized) && !instructionWords.test(normalized);
 }
 function loadApiToken(): string | undefined {
-  try {
-    if (fs.existsSync(CONFIG_FILE)) {
-      const config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf-8'));
-      return config.token || config.apiToken;
-    }
-  } catch (e) {
-    console.error('Failed to load config:', e);
-  }
-  return undefined;
+  return getApiToken();
 }
 
 // 调用火山方舟 API 生成图片

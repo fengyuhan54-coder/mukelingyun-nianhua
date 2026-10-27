@@ -95,7 +95,7 @@ export default function ApiConfig({ apiToken, onTokenChange }: ApiConfigProps) {
         </p>
       )}
       <p style={{ color: '#6c757d', fontSize: '12px', marginTop: '8px' }}>
-        用于调用豆包/火山引擎 AI 生图接口，Token 将安全保存在服务端
+        请填写您自己的火山方舟密钥，仅用于当前浏览器会话；不会写入项目文件或提供给其他用户。
       </p>
     </div>
   );

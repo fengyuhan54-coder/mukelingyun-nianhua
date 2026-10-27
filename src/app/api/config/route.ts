@@ -1,44 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { loadConfig, saveConfig } from '@/lib/api-config';
+import { getApiToken, saveConfig } from '@/lib/api-config';
 
-// GET: 获取当前配置状态
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
-  const config = loadConfig();
-  const hasEnvToken = !!(process.env.DOUBAO_API_TOKEN || process.env.ARK_API_TOKEN);
-  return NextResponse.json({
-    success: true,
-    hasToken: hasEnvToken || !!config.apiToken,
-    tokenLength: (config.apiToken || process.env.DOUBAO_API_TOKEN || process.env.ARK_API_TOKEN || '').length
+  const token = getApiToken();
+  return NextResponse.json({ success: true, hasToken: !!token, tokenLength: token?.length || 0 }, {
+    headers: { 'Cache-Control': 'no-store' },
   });
 }
 
-// POST: 保存配置
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { apiToken } = body;
-
-    if (apiToken && apiToken.length < 20) {
-      return NextResponse.json(
-        { success: false, error: 'Token 长度不足' },
-        { status: 400 }
-      );
+    const origin = request.headers.get('origin');
+    if (origin && origin !== request.nextUrl.origin) {
+      return NextResponse.json({ success: false, error: '不允许跨站修改密钥配置' }, { status: 403 });
     }
-
-    const config = loadConfig();
-    config.apiToken = apiToken;
-    saveConfig(config);
-
-    return NextResponse.json({
-      success: true,
-      hasToken: !!apiToken,
-      tokenLength: apiToken?.length || 0
+    const body = await request.json();
+    if (typeof body.apiToken !== 'string') {
+      return NextResponse.json({ success: false, error: '请输入您自己的 API Token' }, { status: 400 });
+    }
+    const token = body.apiToken.trim();
+    if (token && (token.length < 20 || token.length > 2048 || /[^\x21-\x7e]/.test(token))) {
+      return NextResponse.json({ success: false, error: 'Token 格式不正确，请检查您自己的密钥' }, { status: 400 });
+    }
+    saveConfig({ apiToken: token }, request.nextUrl.protocol === 'https:');
+    return NextResponse.json({ success: true, hasToken: !!token, tokenLength: token.length }, {
+      headers: { 'Cache-Control': 'no-store' },
     });
-  } catch (err) {
-    console.error('保存配置错误:', err);
-    return NextResponse.json(
-      { success: false, error: '保存失败' },
-      { status: 500 }
-    );
+  } catch {
+    return NextResponse.json({ success: false, error: '配置失败，请重新填写您自己的密钥' }, { status: 400 });
   }
 }

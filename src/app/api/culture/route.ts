@@ -1,3 +1,4 @@
+import { getApiToken } from '@/lib/api-config';
 import { NextRequest, NextResponse } from 'next/server';
 import { generateCulturePrompt, DYNASTY_STYLES, ARCHITECTURE_TYPES, NEW_YEAR_PRINT_STYLES } from '@/lib/prompt-templates';
 
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
     });
 
     // 获取 API Token
-    const apiToken = process.env.DOUBAO_API_TOKEN || process.env.ARK_API_TOKEN;
+    const apiToken = getApiToken();
 
     if (!apiToken) {
       // 如果没有 API Token，返回本地知识库内容

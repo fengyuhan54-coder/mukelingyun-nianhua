@@ -1,38 +1,28 @@
-import { writeFileSync, readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import { cookies } from 'next/headers';
 
-const CONFIG_FILE = join(process.cwd(), '.api-config.json');
+// Each browser supplies its own credential. Never fall back to server files or environment tokens.
+const TOKEN_COOKIE = 'muling_ark_token';
 
-// 简单的服务端配置存储
-let cachedConfig: { apiToken?: string } = {};
-
-export function loadConfig() {
-  try {
-    if (existsSync(CONFIG_FILE)) {
-      cachedConfig = JSON.parse(readFileSync(CONFIG_FILE, 'utf-8'));
-    }
-  } catch {
-    cachedConfig = {};
-  }
-  return cachedConfig;
+export function loadConfig(): { apiToken?: string } {
+  const apiToken = cookies().get(TOKEN_COOKIE)?.value;
+  return apiToken ? { apiToken } : {};
 }
 
-export function saveConfig(config: { apiToken?: string }) {
-  try {
-    writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2));
-    cachedConfig = config;
-  } catch (err) {
-    console.error('保存配置失败:', err);
-    throw err;
+export function saveConfig(config: { apiToken?: string }, secure = false) {
+  const token = config.apiToken?.trim() || '';
+  if (!token) {
+    cookies().delete(TOKEN_COOKIE);
+    return;
   }
+  cookies().set(TOKEN_COOKIE, token, {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure,
+    path: '/',
+    // Session cookie: no persistent server-side credential file.
+  });
 }
 
 export function getApiToken(): string | undefined {
-  // 先尝试环境变量
-  const envToken = process.env.DOUBAO_API_TOKEN || process.env.ARK_API_TOKEN;
-  if (envToken) return envToken;
-  
-  // 再尝试配置文件
-  loadConfig();
-  return cachedConfig.apiToken;
+  return loadConfig().apiToken;
 }

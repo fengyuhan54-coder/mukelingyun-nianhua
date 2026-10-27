@@ -1,23 +1,12 @@
+import { getApiToken } from '@/lib/api-config';
 import { NextRequest, NextResponse } from "next/server";
-import path from "path";
-import fs from "fs";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// 获取项目根目录下的配置文件
-const CONFIG_FILE = path.join(process.cwd(), ".api-config.json");
 
 function loadApiToken(): string | undefined {
-  try {
-    if (fs.existsSync(CONFIG_FILE)) {
-      const config = JSON.parse(fs.readFileSync(CONFIG_FILE, "utf-8"));
-      return config.token || config.apiToken;
-    }
-  } catch (e) {
-    console.error("Failed to load config:", e);
-  }
-  return undefined;
+  return getApiToken();
 }
 
 export async function POST(request: NextRequest) {
